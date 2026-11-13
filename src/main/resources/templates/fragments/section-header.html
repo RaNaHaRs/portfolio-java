@@ -1,0 +1,9 @@
+<header xmlns:th="http://www.thymeleaf.org"
+        th:fragment="sectionHeader(eyebrow, title, intro)"
+        class="section-header">
+  <p class="section-header__eyebrow type-label" th:text="${eyebrow}">SECTION</p>
+  <h2 class="type-h2" th:text="${title}">Section title</h2>
+  <p class="section-header__intro prose"
+     th:if="${intro != null}"
+     th:text="${intro}">Section introduction</p>
+</header>

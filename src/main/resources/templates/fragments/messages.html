@@ -1,0 +1,14 @@
+<p xmlns:th="http://www.thymeleaf.org"
+   th:fragment="fieldError(inputId, message)"
+   class="field-error"
+   th:if="${message != null}"
+   th:id="|${inputId}-error|"
+   th:text="${message}">Please check this field.</p>
+
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="liveRegion(regionId)"
+     class="visually-hidden"
+     th:id="${regionId}"
+     role="status"
+     aria-live="polite"
+     aria-atomic="true"></div>

@@ -1,19 +1,20 @@
 services:
   postgres:
-    image: 'postgres:latest'
+    image: postgres:18
     environment:
-      - 'POSTGRES_DB=portfolio'
-      - 'POSTGRES_PASSWORD=Harsh@2607'
-      - 'POSTGRES_USER=postgres'
+      POSTGRES_DB: portfolio
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: portfolio
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata_v18:/var/lib/postgresql
+
   mailpit:
     image: axllent/mailpit
     ports:
-    - "1025:1025"
-    - "8025:8025"
+      - "1025:1025"
+      - "8025:8025"
 
 volumes:
-  pgdata:
+  pgdata_v18:

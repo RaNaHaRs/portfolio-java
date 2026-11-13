@@ -1,0 +1,14 @@
+<footer xmlns:th="http://www.thymeleaf.org"
+        th:fragment="siteFooter"
+        class="site-footer">
+  <section th:replace="~{fragments/status-strip :: statusStrip}"></section>
+  <div class="container site-footer__inner">
+    <p class="site-footer__built">Built with Spring Boot and Thymeleaf</p>
+    <nav class="site-footer__links" aria-label="Footer navigation">
+      <a href="https://github.com/RaNaHaRs/portfolio-java">View source</a>
+      <a th:href="@{/swagger-ui}">API docs</a>
+    </nav>
+    <p class="site-footer__copyright">© Harsh Rana</p>
+    <div th:replace="~{fragments/motion-toggle :: motionToggle}"></div>
+  </div>
+</footer>

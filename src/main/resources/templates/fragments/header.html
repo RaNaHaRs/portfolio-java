@@ -1,0 +1,35 @@
+<header xmlns:th="http://www.thymeleaf.org"
+        th:fragment="siteHeader(activePage)"
+        class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" th:href="@{/}" aria-label="Harsh Rana home">harsh.rana</a>
+    <button class="button button--ghost site-header__menu-toggle"
+            type="button"
+            data-nav-toggle
+            aria-controls="primary-navigation"
+            aria-expanded="false">
+      Menu
+    </button>
+    <nav id="primary-navigation" class="site-nav" aria-label="Main navigation" data-nav-panel>
+      <button class="button button--ghost site-nav__close"
+              type="button"
+              data-nav-close>
+        Close menu
+      </button>
+      <ul class="site-nav__list">
+        <li><a th:href="@{/}" th:attr="aria-current=${activePage == 'home' ? 'page' : null}">Home</a></li>
+        <li><a th:href="@{/about}" th:attr="aria-current=${activePage == 'about' ? 'page' : null}">About</a></li>
+        <li><a th:href="@{/skills}" th:attr="aria-current=${activePage == 'skills' ? 'page' : null}">Skills</a></li>
+        <li><a th:href="@{/experience}" th:attr="aria-current=${activePage == 'experience' ? 'page' : null}">Experience</a></li>
+        <li><a th:href="@{/projects}" th:attr="aria-current=${activePage == 'projects' ? 'page' : null}">Projects</a></li>
+        <li><a th:href="@{/contact}" th:attr="aria-current=${activePage == 'contact' ? 'page' : null}">Contact</a></li>
+      </ul>
+      <div class="site-nav__actions">
+        <a class="button button--secondary" th:href="@{/resume}">Resume</a>
+        <button class="button button--ghost" type="button" data-theme-toggle aria-pressed="false">
+          Theme
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>

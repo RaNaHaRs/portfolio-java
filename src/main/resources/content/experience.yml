@@ -1,0 +1,28 @@
+portfolio:
+  content:
+    experience:
+      positions:
+        - role: Web Development Intern
+          organization: Selkey Cybersecurity Pvt. Ltd.
+          location: Anand, Gujarat
+          start: May 2026
+          end: June 2026
+          summary: Contributed to a production-grade CRM platform used in real business operations.
+          stack:
+            - React.js
+            - Node.js
+            - Express.js
+            - PostgreSQL
+          responsibilities:
+            - Built responsive UI modules.
+            - Integrated REST APIs.
+            - Developed inventory and case management modules.
+            - Developed a dynamic field configuration system.
+            - Developed user administration functionality.
+            - Debugged and resolved application issues.
+            - Tested applications across browsers and devices.
+          recognitions:
+            - title: Internship completion certificate
+              approved-for-public-display: false
+            - title: Internship appreciation letter
+              approved-for-public-display: false

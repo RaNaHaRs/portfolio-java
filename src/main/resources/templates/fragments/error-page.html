@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="errorPage(status, exceptionFile, message, pageTitle, pageDescription)">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title th:text="|${pageTitle} · Harsh Rana, Java Backend Developer|">Error · Harsh Rana, Java Backend Developer</title>
+  <meta name="description" th:content="${pageDescription}">
+  <link rel="stylesheet" th:href="@{/css/base.css}">
+  <script th:nonce="${cspNonce}">
+    (() => {
+      try {
+        const theme = window.localStorage.getItem("portfolio.theme");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch (error) {
+        console.warn("Theme preference could not be read; using the system preference.", error);
+      }
+    })();
+  </script>
+  <script type="module" th:src="@{/js/core.js}"></script>
+</head>
+<body data-page="error">
+  <a th:replace="~{fragments/skip-link :: skipLink('main-content', 'Skip to content')}"></a>
+  <header th:replace="~{fragments/header :: siteHeader('error')}"></header>
+  <main id="main-content" class="container error-page" tabindex="-1">
+    <div class="ide-window">
+      <aside class="ide-window__tree" aria-label="Project files">
+        <p class="ide-window__tree-heading">EXPLORER</p>
+        <p class="ide-window__tree-root">portfolio</p>
+        <p class="ide-window__tree-file">src</p>
+        <p class="ide-window__tree-file">└─ main</p>
+        <p class="ide-window__tree-file">   └─ java</p>
+        <p class="ide-window__tree-file ide-window__tree-file--active"
+           th:text="|      └─ ${exceptionFile}|">NotFoundException.java</p>
+      </aside>
+      <section class="ide-window__editor" aria-labelledby="error-title">
+        <div class="ide-window__tab" th:text="${exceptionFile}">NotFoundException.java</div>
+        <div class="ide-window__code">
+          <p class="ide-window__line"><span aria-hidden="true">1</span><code>HTTP/1.1 <strong th:text="${status}">404</strong></code></p>
+          <p class="ide-window__line"><span aria-hidden="true">2</span><code> </code></p>
+          <h1 id="error-title" class="ide-window__line">
+            <span aria-hidden="true">3</span>
+            <code th:text="${message}">404: this route isn’t mapped.</code>
+          </h1>
+          <p class="ide-window__line"><span aria-hidden="true">4</span><code class="ide-window__caret" aria-hidden="true"></code></p>
+        </div>
+      </section>
+    </div>
+    <nav class="error-page__navigation" aria-label="Main pages">
+      <a class="button button--primary" th:href="@{/}">Go home</a>
+      <a th:href="@{/about}">About</a>
+      <a th:href="@{/skills}">Skills</a>
+      <a th:href="@{/experience}">Experience</a>
+      <a th:href="@{/projects}">Projects</a>
+      <a th:href="@{/contact}">Contact</a>
+    </nav>
+  </main>
+  <footer th:replace="~{fragments/footer :: siteFooter}"></footer>
+</body>
+</html>

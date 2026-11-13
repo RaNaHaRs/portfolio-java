@@ -1,0 +1,26 @@
+portfolio:
+  content:
+    profile:
+      name: Harsh Rana
+      role: Java Backend Developer
+      tagline: Java Backend Developer
+      location: Anand, Gujarat, India
+      links:
+        github: https://github.com/RaNaHaRs/
+        linkedIn: https://www.linkedin.com/in/harsh-rana-ba792a296/
+      resumePath: /resume
+      education:
+        degree: B.Tech
+        field: Information Technology
+        institution: A.D. Patel Institute of Technology
+        university: CVM University
+        graduation:
+          expectedYear: 2027
+        cgpa: 7.82
+      careerGoal: Become a Java Specialist with expertise in enterprise application development, distributed systems, and modern backend architecture.
+      motto: Curiosity started my coding journey. Building real-world software keeps it moving forward.
+      flags:
+        showCgpa: false
+        contact:
+          form:
+            enabled: ${CONTACT_FORM_ENABLED:true}

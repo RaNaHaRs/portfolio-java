@@ -1,0 +1,5 @@
+<a xmlns:th="http://www.thymeleaf.org"
+   th:fragment="skipLink(target, label)"
+   class="skip-link"
+   th:href="|#${target}|"
+   th:text="${label}">Skip to content</a>

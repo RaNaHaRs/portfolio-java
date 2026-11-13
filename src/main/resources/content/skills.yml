@@ -1,0 +1,97 @@
+portfolio:
+  content:
+    skills:
+      levelsConfirmed: false
+      categories:
+        - name: Programming languages
+          skills:
+            - name: Java
+              level: Strong
+              usedIn: [rentify, moviesearch]
+            - name: JavaScript
+              level: Working knowledge
+              usedIn: [recoverlab, moviesearch]
+            - name: SQL
+              usedIn: [rentify, recoverlab]
+            - name: Python
+              level: Working knowledge
+              usedIn: [moviesearch]
+            - name: C++
+              usedIn: []
+        - name: Backend technologies
+          skills:
+            - name: Spring Boot
+              level: Strong
+              usedIn: [rentify, moviesearch]
+            - name: Spring MVC
+              usedIn: [rentify]
+            - name: Hibernate
+              level: Strong
+              usedIn: [rentify]
+            - name: JPA
+              level: Strong
+              usedIn: [rentify]
+            - name: REST APIs
+              level: Strong
+              usedIn: [rentify, recoverlab, moviesearch]
+            - name: Node.js
+              level: Working knowledge
+              usedIn: [recoverlab]
+            - name: Express.js
+              level: Working knowledge
+              usedIn: [recoverlab]
+            - name: JWT
+              usedIn: [recoverlab]
+            - name: Flask
+              level: Working knowledge
+              usedIn: [moviesearch]
+        - name: Frontend technologies
+          skills:
+            - name: React.js
+              level: Working knowledge
+              usedIn: [recoverlab]
+            - name: HTML5
+              usedIn: [recoverlab]
+            - name: CSS3
+              usedIn: [recoverlab]
+            - name: Bootstrap
+              usedIn: [rentify]
+            - name: Thymeleaf
+              usedIn: [rentify]
+        - name: Databases
+          skills:
+            - name: PostgreSQL
+              level: Working knowledge
+              usedIn: [recoverlab]
+            - name: MySQL
+              level: Strong
+              usedIn: [rentify]
+            - name: MongoDB
+              usedIn: []
+        - name: Tools
+          skills:
+            - name: Git
+              level: Working knowledge
+              usedIn: []
+            - name: GitHub
+              usedIn: []
+            - name: Maven
+              level: Working knowledge
+              usedIn: [rentify, moviesearch]
+            - name: Postman
+              usedIn: []
+            - name: IntelliJ IDEA
+              usedIn: []
+            - name: VS Code
+              usedIn: []
+        - name: Currently learning
+          skills:
+            - name: System design
+              level: Learning
+              usedIn: []
+            - name: Backend architecture
+              level: Learning
+              usedIn: []
+            - name: Distributed systems
+              level: Learning
+              usedIn: []

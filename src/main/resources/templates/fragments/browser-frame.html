@@ -1,0 +1,17 @@
+<figure xmlns:th="http://www.thymeleaf.org"
+        th:fragment="browserFrame(imageSrc, imageAlt, imageWidth, imageHeight, urlLabel)"
+        class="browser-frame">
+  <div class="browser-frame__bar" aria-hidden="true">
+    <span class="browser-frame__dot"></span>
+    <span class="browser-frame__dot"></span>
+    <span class="browser-frame__dot"></span>
+    <span class="browser-frame__url" th:text="${urlLabel}">Project URL</span>
+  </div>
+  <img class="browser-frame__image"
+       th:src="@{${imageSrc}}"
+       th:alt="${imageAlt}"
+       th:width="${imageWidth}"
+       th:height="${imageHeight}"
+       loading="lazy"
+       decoding="async">
+</figure>

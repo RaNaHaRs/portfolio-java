@@ -1,0 +1,27 @@
+portfolio:
+  content:
+    certifications:
+      items:
+        - title: GeeksforGeeks Java Certification
+          issuer: GeeksforGeeks
+          isPublic: false
+        - title: GeeksforGeeks Git Certification
+          issuer: GeeksforGeeks
+          isPublic: false
+        - title: Programming Vacation Batch Certificate
+          issuer: Programming Vacation Batch
+          isPublic: false
+        - title: Internship Completion Certificate
+          issuer: Selkey Cybersecurity Pvt. Ltd.
+          isPublic: false
+        - title: Internship Appreciation Letter
+          issuer: Selkey Cybersecurity Pvt. Ltd.
+          isPublic: false
+        - title: Smart India Hackathon 2024 Participation Certificate
+          issuer: Smart India Hackathon
+          year: 2024
+          isPublic: false
+        - title: Smart India Hackathon 2025 Participation Certificate
+          issuer: Smart India Hackathon
+          year: 2025
+          isPublic: false

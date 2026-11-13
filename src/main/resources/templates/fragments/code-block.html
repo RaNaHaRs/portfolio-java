@@ -1,0 +1,12 @@
+<figure xmlns:th="http://www.thymeleaf.org"
+        th:fragment="codeBlock(codeId, language, code, copyLabel)"
+        class="code-block">
+  <button class="button button--ghost code-block__copy"
+          type="button"
+          th:attr="data-copy-code=${codeId}"
+          th:text="${copyLabel}">Copy</button>
+  <pre><code th:id="${codeId}"
+             th:class="|language-${language}|"
+             th:text="${code}"></code></pre>
+  <figcaption class="visually-hidden" th:text="|${language} code sample|">Code sample</figcaption>
+</figure>

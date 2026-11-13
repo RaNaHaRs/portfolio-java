@@ -1,0 +1,12 @@
+<a xmlns:th="http://www.thymeleaf.org"
+   th:fragment="linkButton(href, label, variant)"
+   th:href="${href}"
+   th:class="|button button--${variant}|"
+   th:text="${label}">Action</a>
+
+<button xmlns:th="http://www.thymeleaf.org"
+        th:fragment="actionButton(label, variant, disabled)"
+        type="button"
+        th:class="|button button--${variant}|"
+        th:disabled="${disabled}"
+        th:text="${label}">Action</button>

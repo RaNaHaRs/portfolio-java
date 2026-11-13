@@ -1,0 +1,43 @@
+portfolio:
+  content:
+    timeline:
+      events:
+        - year: 2023
+          title: Programming vacation batch
+          description: Joined a programming vacation batch after Class 12.
+          tags: [Programming]
+        - year: 2024
+          title: Built Rentify
+          description: Built and deployed a full-stack rental marketplace.
+          tags: [Java, Spring Boot, Rentify]
+        - year: 2024
+          title: Smart India Hackathon
+          description: Participated in Smart India Hackathon 2024.
+          tags: [Hackathon, Participant]
+        - year: 2025
+          title: Smart India Hackathon
+          description: Participated in Smart India Hackathon 2025.
+          tags: [Hackathon, Participant]
+        - year: 2025
+          title: International Conference STSTD-2025
+          description: Volunteered in IT support for the conference.
+          tags: [Volunteer, IT support]
+        - year: 2026
+          period: May–June
+          title: Internship at Selkey Cybersecurity
+          description: Worked as a Web Development Intern and contributed to RecoverLab CRM.
+          tags: [Internship, RecoverLab CRM]
+        - year: 2026
+          title: MovieSearch Recommendation Engine
+          description: Built a recommendation system integrating a Spring Boot backend with a Flask service.
+          tags: [Spring Boot, Flask, Python]
+        - year: 2026
+          title: Hyperlink InfoSystem
+          description: Placement wording and publication are awaiting confirmation.
+          tags: [Placement]
+          approvedForDisplay: false
+        - year: 2027
+          title: B.Tech graduation
+          description: Expected graduation in Information Technology.
+          tags: [Education, Upcoming]
+          upcoming: true

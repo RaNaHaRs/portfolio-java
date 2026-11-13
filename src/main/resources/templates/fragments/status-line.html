@@ -1,0 +1,7 @@
+<p xmlns:th="http://www.thymeleaf.org"
+   th:fragment="statusLine(code, message, tone)"
+   th:class="|status-line status-line--${tone}|"
+   th:attr="role=${tone == 'error' ? 'alert' : 'status'}">
+  <span class="status-line__code" th:text="${code}">200</span>
+  <span th:text="${message}">OK</span>
+</p>

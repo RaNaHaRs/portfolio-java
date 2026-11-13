@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="base(pageTitle, pageDescription, canonicalUrl, openGraphImageUrl, activePage, pageContent)">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title th:text="|${pageTitle} · Harsh Rana, Java Backend Developer|">Portfolio · Harsh Rana, Java Backend Developer</title>
+  <meta name="description" th:content="${pageDescription}">
+  <link rel="canonical" th:href="${canonicalUrl}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" th:content="|${pageTitle} · Harsh Rana, Java Backend Developer|">
+  <meta property="og:description" th:content="${pageDescription}">
+  <meta property="og:url" th:content="${canonicalUrl}">
+  <meta property="og:image" th:if="${openGraphImageUrl != null}" th:content="${openGraphImageUrl}">
+  <meta name="twitter:card" th:content="${openGraphImageUrl != null ? 'summary_large_image' : 'summary'}">
+  <meta name="twitter:title" th:content="|${pageTitle} · Harsh Rana, Java Backend Developer|">
+  <meta name="twitter:description" th:content="${pageDescription}">
+  <meta name="twitter:image" th:if="${openGraphImageUrl != null}" th:content="${openGraphImageUrl}">
+  <link rel="stylesheet" th:href="@{/css/base.css}">
+  <script th:nonce="${cspNonce}">
+    (() => {
+      try {
+        const theme = window.localStorage.getItem("portfolio.theme");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch (error) {
+        console.warn("Theme preference could not be read; using the system preference.", error);
+      }
+    })();
+  </script>
+  <script type="module" th:src="@{/js/core.js}"></script>
+</head>
+<body th:attr="data-page=${activePage}">
+  <a th:replace="~{fragments/skip-link :: skipLink('main-content', 'Skip to content')}"></a>
+  <header th:replace="~{fragments/header :: siteHeader(${activePage})}"></header>
+  <main id="main-content" tabindex="-1">
+    <th:block th:replace="${pageContent}"></th:block>
+  </main>
+  <footer th:replace="~{fragments/footer :: siteFooter}"></footer>
+</body>
+</html>

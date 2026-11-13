@@ -1,0 +1,84 @@
+portfolio:
+  content:
+    projects:
+      items:
+        - slug: rentify
+          order: 1
+          status: LIVE
+          title: Rentify
+          category: Full Stack Rental Marketplace
+          typeNote: Full-stack rental marketplace
+          summary: An online rental marketplace allowing users to list, search, and rent properties.
+          stack:
+            - Java
+            - Spring Boot
+            - Thymeleaf
+            - MySQL
+            - Bootstrap
+            - JPA
+            - Hibernate
+          links:
+            live: https://rentify-render-g9w0.onrender.com/
+            repository: https://github.com/RaNaHaRs/Rentify-render
+          highlights:
+            - Property listings and search
+            - Rental workflow
+            - Responsive UI
+            - Cloud image storage
+            - MVC architecture
+            - JPA and Hibernate integration
+            - Relational database design
+            - Deployed on Render
+          caseStudy: projects/rentify.md
+        - slug: recoverlab
+          order: 2
+          status: LIVE
+          title: RecoverLab CRM
+          category: Production Industry Project
+          typeNote: Internship contribution; not a solo project
+          summary: A production multi-tenant CRM for data-recovery business operations, contributed to during the Selkey Cybersecurity internship.
+          stack:
+            - React.js
+            - Node.js
+            - Express.js
+            - PostgreSQL
+            - JWT
+            - Socket.IO
+          links:
+            live: https://datarescuecrm.com/home
+          highlights:
+            - Multi-tenant architecture
+            - Role-based access control
+            - Case management
+            - Inventory tracking
+            - Client portal
+            - Invoicing and payments
+            - Analytics dashboard
+            - Real-time communication
+            - Workflow automation
+            - 70+ database migrations
+            - Production deployment using aaPanel and Nginx
+            - SSL configuration and reverse proxy setup
+          caseStudy: projects/recoverlab.md
+        - slug: moviesearch
+          order: 3
+          status: IN_PROGRESS
+          title: MovieSearch Recommendation Engine
+          category: Machine Learning Integration Project
+          typeNote: No live demo is listed in the source material
+          summary: A recommendation system combining machine-learning capabilities with Java backend technologies.
+          stack:
+            - Spring Boot
+            - Flask
+            - Python
+            - JavaScript
+          links:
+            repository: https://github.com/RaNaHaRs/Movie-recommendation-system
+          highlights:
+            - Movie recommendation engine
+            - REST API communication
+            - Cross-framework integration
+            - Flask recommendation service
+            - Spring Boot backend
+            - API-based communication
+          caseStudy: projects/moviesearch.md

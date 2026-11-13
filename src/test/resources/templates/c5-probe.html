@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base('Layout probe', 'Layout description', '/', null, 'home', ~{::content})}">
+<th:block th:fragment="content">
+  <h1>Page content marker</h1>
+  <p th:text="${probeMessage}">Escaped content</p>
+  <a th:replace="~{fragments/buttons :: linkButton('/projects', 'View projects', 'primary')}"></a>
+  <span th:replace="~{fragments/chips :: chip('Java')}"></span>
+  <article th:replace="~{fragments/cards :: card(~{::cardContent})}"></article>
+  <figure th:fragment="cardContent"><p>Card content</p></figure>
+  <figure th:replace="~{fragments/browser-frame :: browserFrame('/images/project.webp', 'Project screenshot', 640, 360, 'example.test')}"></figure>
+  <figure th:replace="~{fragments/code-block :: codeBlock('probe-code', 'java', 'class Probe {}', 'Copy')}"></figure>
+  <aside th:replace="~{fragments/callout :: callout(~{::calloutContent})}"></aside>
+  <p th:fragment="calloutContent">Callout content</p>
+  <p th:replace="~{fragments/status-line :: statusLine('200', 'OK', 'success')}"></p>
+  <header th:replace="~{fragments/section-header :: sectionHeader('BUILD', 'Build status', 'A section introduction.')}"></header>
+  <p th:replace="~{fragments/messages :: fieldError('email', 'Enter a valid email address.')}"></p>
+  <div th:replace="~{fragments/messages :: liveRegion('results')}"></div>
+</th:block>
+</html>

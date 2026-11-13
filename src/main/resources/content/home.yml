@@ -1,0 +1,45 @@
+portfolio:
+  content:
+    home:
+      proofItems:
+        - label: Placement
+          detail: Hyperlink InfoSystem
+          targetRoute: /experience
+          statusChip: Placement wording to confirm
+          approvedForDisplay: false
+        - label: Production CRM
+          detail: Contributed to RecoverLab CRM during the Selkey Cybersecurity internship.
+          targetRoute: /projects/recoverlab
+          statusChip: Internship contribution
+          approvedForDisplay: true
+        - label: Hackathons
+          detail: Smart India Hackathon participant in 2024 and 2025.
+          targetRoute: /about
+          statusChip: Participant
+          approvedForDisplay: true
+        - label: Education
+          detail: B.Tech in Information Technology, expected 2027.
+          targetRoute: /about
+          statusChip: Expected 2027
+          approvedForDisplay: true
+      journeyStops:
+        - label: About
+          teaser: Education, experience, and activities.
+          targetRoute: /about
+          statusChip: Profile
+        - label: Skills
+          teaser: Technologies and the projects where they are used.
+          targetRoute: /skills
+          statusChip: Skills
+        - label: Experience
+          teaser: Web Development Intern at Selkey Cybersecurity.
+          targetRoute: /experience
+          statusChip: Internship
+        - label: Projects
+          teaser: Rentify, RecoverLab CRM, and MovieSearch.
+          targetRoute: /projects
+          statusChip: Projects
+        - label: Contact
+          teaser: Contact Harsh through the form.
+          targetRoute: /contact
+          statusChip: Contact
