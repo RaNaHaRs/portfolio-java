@@ -17,6 +17,19 @@
   <meta name="twitter:title" th:content="|${pageTitle} · Harsh Rana, Java Backend Developer|">
   <meta name="twitter:description" th:content="${pageDescription}">
   <meta name="twitter:image" th:if="${openGraphImageUrl != null}" th:content="${openGraphImageUrl}">
+  <script th:if="${personJsonLd != null}"
+          type="application/ld+json"
+          th:nonce="${cspNonce}"
+          th:inline="javascript">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": [[${personJsonLd.name}]],
+      "jobTitle": [[${personJsonLd.role}]],
+      "url": [[${personJsonLd.url}]],
+      "sameAs": [[${personJsonLd.sameAs}]]
+    }
+  </script>
   <link rel="stylesheet" th:href="@{/css/base.css}">
   <script th:nonce="${cspNonce}">
     (() => {
@@ -30,6 +43,10 @@
       }
     })();
   </script>
+  <script th:if="${highlightCode}"
+          th:src="@{/js/vendor/highlight.min.js}"
+          th:nonce="${cspNonce}"
+          defer></script>
   <script type="module" th:src="@{/js/core.js}"></script>
 </head>
 <body th:attr="data-page=${activePage}">

@@ -2,6 +2,7 @@ package com.harshrana.portfolio.web;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Map;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
+import com.harshrana.portfolio.content.ProfileContentProperties;
+
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class HtmlErrorPageExceptionHandler {
@@ -31,8 +35,17 @@ public class HtmlErrorPageExceptionHandler {
 
 	private final SpringTemplateEngine templateEngine;
 
-	public HtmlErrorPageExceptionHandler(SpringTemplateEngine templateEngine) {
+	private final ProfileContentProperties profile;
+
+	private final String baseUrl;
+
+	public HtmlErrorPageExceptionHandler(
+			SpringTemplateEngine templateEngine,
+			ProfileContentProperties profile,
+			@Value("${portfolio.site.base-url}") String baseUrl) {
 		this.templateEngine = templateEngine;
+		this.profile = profile;
+		this.baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
 	}
 
 	@ExceptionHandler(Exception.class)
@@ -88,7 +101,14 @@ public class HtmlErrorPageExceptionHandler {
 				"message", message,
 				"pageTitle", pageTitle,
 				"pageDescription", pageDescription,
-				"cspNonce", nonceValue);
+				"cspNonce", nonceValue,
+				"canonicalUrl", baseUrl + request.getRequestURI(),
+				"openGraphImageUrl", baseUrl + "/img/og-default.svg",
+				"personJsonLd", new SeoPersonModelAdvice.PersonJsonLd(
+						profile.name(),
+						profile.role(),
+						baseUrl,
+						List.of(profile.links().github(), profile.links().linkedIn())));
 		WebContext context = new WebContext(
 				JakartaServletWebApplication.buildApplication(request.getServletContext())
 						.buildExchange(request, response),

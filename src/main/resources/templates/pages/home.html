@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base(${pageTitle}, ${pageDescription}, ${canonicalUrl}, ${openGraphImageUrl}, 'home', ~{::content})}">
+<th:block th:fragment="content">
+  <section class="container home-hero" aria-labelledby="home-title">
+    <div class="home-hero__content">
+      <p class="home-hero__eyebrow" th:text="${profile.role}">Java Backend Developer</p>
+      <h1 id="home-title" th:text="${profile.name}">Harsh Rana</h1>
+      <p class="home-hero__statement" th:text="${profile.careerGoal}">
+        Become a Java Specialist with expertise in enterprise application development, distributed systems, and modern backend architecture.
+      </p>
+      <nav class="home-hero__actions" aria-label="Featured actions">
+        <a class="button button--primary" th:href="@{/projects}">View projects</a>
+        <a class="button button--secondary" th:href="@{${profile.resumePath}}">Download resume</a>
+      </nav>
+    </div>
+
+    <aside class="home-snapshot card" aria-label="Profile snapshot">
+      <dl>
+        <div class="home-snapshot__row">
+          <dt>Role</dt>
+          <dd th:text="${profile.role}">Java Backend Developer</dd>
+        </div>
+        <div class="home-snapshot__row">
+          <dt>Stack</dt>
+          <dd class="home-snapshot__stack">
+            <span class="chip" th:each="technology : ${snapshotStack}" th:text="${technology}">Java</span>
+          </dd>
+        </div>
+        <div class="home-snapshot__row">
+          <dt>Location</dt>
+          <dd th:text="${profile.location}">Anand, Gujarat, India</dd>
+        </div>
+      </dl>
+    </aside>
+  </section>
+
+  <section class="home-proof section" aria-labelledby="home-proof-title">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Verified details</p>
+        <h2 id="home-proof-title">A few things I’ve done</h2>
+      </div>
+      <ul class="home-proof__list">
+        <li class="home-proof__item" th:each="proof : ${proofItems}">
+          <a class="home-proof__link"
+             th:if="${proof.targetRoute != null}"
+             th:href="@{${proof.targetRoute}}">
+            <span class="home-proof__label" th:text="${proof.label}">Education</span>
+            <span class="home-proof__detail" th:text="${proof.detail}">B.Tech in Information Technology, expected 2027.</span>
+            <span class="chip" th:if="${proof.statusChip != null}" th:text="${proof.statusChip}">Expected 2027</span>
+          </a>
+          <div class="home-proof__link" th:if="${proof.targetRoute == null}">
+            <span class="home-proof__label" th:text="${proof.label}">Education</span>
+            <span class="home-proof__detail" th:text="${proof.detail}">B.Tech in Information Technology, expected 2027.</span>
+            <span class="chip" th:if="${proof.statusChip != null}" th:text="${proof.statusChip}">Expected 2027</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container home-journey section" aria-labelledby="home-journey-title">
+    <div class="section-header">
+      <p class="section-header__eyebrow">Explore the portfolio</p>
+      <h2 id="home-journey-title">Follow the request</h2>
+      <p>Start with the profile, then follow the work through projects and get in touch.</p>
+    </div>
+    <ol class="home-journey__list">
+      <li class="home-journey__stop" th:each="stop, iterator : ${journeyStops}">
+        <span class="home-journey__number" aria-hidden="true"
+              th:text="${#numbers.formatInteger(iterator.count, 2)}">01</span>
+        <a class="home-journey__card card" th:href="@{${stop.targetRoute}}">
+          <span class="home-journey__label" th:text="${stop.label}">About</span>
+          <span class="home-journey__teaser" th:text="${stop.teaser}">Education, experience, and activities.</span>
+          <span class="chip" th:text="${stop.statusChip}">Profile</span>
+          <span class="home-journey__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="home-featured section" aria-labelledby="home-featured-title">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Selected work</p>
+        <h2 id="home-featured-title">Featured projects</h2>
+      </div>
+      <div class="home-featured__grid">
+        <article class="home-featured__card card" th:each="projectPage : ${featuredProjects}">
+          <p class="project-card__category" th:text="${projectPage.project.category}">Project category</p>
+          <h3 class="home-featured__title">
+            <a th:href="@{/projects/{slug}(slug=${projectPage.project.slug})}"
+               th:text="${projectPage.project.title}">Project title</a>
+          </h3>
+          <p th:text="${projectPage.project.summary}">Project summary</p>
+          <p class="project-card__type-note"
+             th:if="${projectPage.project.typeNote != null}"
+             th:text="${projectPage.project.typeNote}">Project contribution note</p>
+          <ul class="project-card__stack" aria-label="Technology stack">
+            <li class="chip" th:each="technology, iterator : ${projectPage.project.stack}"
+                th:if="${iterator.index < 4}"
+                th:text="${technology}">Technology</li>
+          </ul>
+          <a class="home-featured__link"
+             th:href="@{/projects/{slug}(slug=${projectPage.project.slug})}">Read the case study <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+      <a class="button button--secondary home-featured__all" th:href="@{/projects}">All projects</a>
+    </div>
+  </section>
+
+  <section class="container home-closing" aria-labelledby="home-closing-title">
+    <div>
+      <p class="section-header__eyebrow">Next response</p>
+      <h2 id="home-closing-title" th:text="${profile.motto}">Curiosity started my coding journey. Building real-world software keeps it moving forward.</h2>
+    </div>
+    <div class="home-closing__actions">
+      <a class="button button--primary"
+         th:if="${profile.email != null}"
+         th:href="|mailto:${profile.email}|">Email me</a>
+      <a class="button button--secondary" th:href="@{/contact}">Contact</a>
+    </div>
+  </section>
+</th:block>
+</html>

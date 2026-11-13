@@ -1,6 +1,39 @@
 <section xmlns:th="http://www.thymeleaf.org"
          th:fragment="statusStrip"
          class="status-strip container"
+         data-status-strip
          aria-label="Live service status">
-  <p class="status-strip__unavailable" role="status" aria-live="polite">Status unavailable</p>
+  <p class="status-strip__unavailable" data-status-unavailable role="status" aria-live="polite">Status unavailable</p>
+  <div class="status-strip__metrics" data-status-metrics hidden>
+    <p class="status-strip__live"><span aria-hidden="true"></span> LIVE</p>
+    <dl class="status-strip__values">
+      <div>
+        <dt>Uptime</dt>
+        <dd data-status-uptime></dd>
+      </div>
+      <div>
+        <dt>Requests</dt>
+        <dd data-status-requests></dd>
+      </div>
+      <div>
+        <dt>JVM memory</dt>
+        <dd data-status-memory></dd>
+      </div>
+      <div>
+        <dt>Build</dt>
+        <dd data-status-build></dd>
+      </div>
+      <div>
+        <dt>Commit</dt>
+        <dd>
+          <a data-status-commit-link hidden rel="noopener noreferrer"></a>
+          <span data-status-commit-unavailable>Unavailable</span>
+        </dd>
+      </div>
+      <div>
+        <dt>Built</dt>
+        <dd data-status-build-time></dd>
+      </div>
+    </dl>
+  </div>
 </section>

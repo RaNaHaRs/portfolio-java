@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1100" role="img" aria-labelledby="title description">
+  <title id="title">RecoverLab CRM architecture and contribution blueprint</title>
+  <desc id="description">A browser, Nginx reverse proxy, Express API, and PostgreSQL database connected in sequence. Amber boxes identify contributions; blue boxes identify platform context.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#14304f" stroke-width="1"/>
+    </pattern>
+    <pattern id="minor-grid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M8 0H0V8" fill="none" stroke="#102640" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#38bdf8"/>
+    </marker>
+    <style>
+      text{font-family:Consolas,monospace;fill:#bae6fd}
+      .label{font-size:18px;letter-spacing:2px;fill:#38bdf8}
+      .mark-label{fill:#f59e0b}
+      .heading{font-size:25px;fill:#e6f4ff}
+      .body{font-size:17px}
+      .small{font-size:14px}
+      .panel{fill:#0a1a2f;stroke:#38bdf8;stroke-width:2}
+      .mark{fill:#201b16;stroke:#f59e0b;stroke-width:2}
+      .context{fill:#0a1a2f;stroke:#38bdf8;stroke-width:2}
+      .line{fill:none;stroke:#38bdf8;stroke-width:3;marker-end:url(#arrow)}
+      .mark-line{fill:none;stroke:#f59e0b;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1500" height="1100" fill="#0a1a2f"/>
+  <rect width="1500" height="1100" fill="url(#minor-grid)"/>
+  <rect width="1500" height="1100" fill="url(#grid)"/>
+  <rect x="36" y="36" width="1428" height="1028" fill="none" stroke="#38bdf8" stroke-width="2"/>
+
+  <text class="label" x="76" y="96">SYSTEM BLUEPRINT / RECOVERLAB CRM</text>
+  <text class="small" x="76" y="132">REQUEST FLOW / PLATFORM CONTEXT AND INTERN CONTRIBUTIONS</text>
+
+  <rect class="panel" x="90" y="205" width="270" height="150" rx="8"/>
+  <text class="label" x="116" y="244">01 / CLIENT</text>
+  <text class="heading" x="116" y="283">Browser</text>
+  <text class="body" x="116" y="318">React client</text>
+
+  <rect class="panel" x="440" y="205" width="270" height="150" rx="8"/>
+  <text class="label" x="466" y="244">02 / EDGE</text>
+  <text class="heading" x="466" y="283">Nginx</text>
+  <text class="body" x="466" y="318">Reverse proxy / SSL</text>
+
+  <rect class="panel" x="790" y="205" width="270" height="150" rx="8"/>
+  <text class="label" x="816" y="244">03 / APPLICATION</text>
+  <text class="heading" x="816" y="283">Express API</text>
+  <text class="body" x="816" y="318">Node.js services</text>
+
+  <rect class="panel" x="1140" y="205" width="270" height="150" rx="8"/>
+  <text class="label" x="1166" y="244">04 / DATA</text>
+  <text class="heading" x="1166" y="283">PostgreSQL</text>
+  <text class="body" x="1166" y="318">Multi-tenant data</text>
+
+  <path class="line" d="M360 280H430"/>
+  <path class="line" d="M710 280H780"/>
+  <path class="line" d="M1060 280H1130"/>
+
+  <text class="label" x="90" y="425">CONTRIBUTED / RESPONSIBILITIES LISTED FOR THE INTERNSHIP</text>
+  <rect class="mark" x="90" y="455" width="250" height="125" rx="8"/>
+  <text class="label mark-label" x="112" y="490">CONTRIBUTED</text>
+  <text class="body" x="112" y="528">Responsive UI</text>
+  <text class="body" x="112" y="553">modules</text>
+
+  <rect class="mark" x="370" y="455" width="250" height="125" rx="8"/>
+  <text class="label mark-label" x="392" y="490">CONTRIBUTED</text>
+  <text class="body" x="392" y="528">REST API</text>
+  <text class="body" x="392" y="553">integration</text>
+
+  <rect class="mark" x="650" y="455" width="250" height="125" rx="8"/>
+  <text class="label mark-label" x="672" y="490">CONTRIBUTED</text>
+  <text class="body" x="672" y="528">Inventory and</text>
+  <text class="body" x="672" y="553">case management</text>
+
+  <rect class="mark" x="930" y="455" width="250" height="125" rx="8"/>
+  <text class="label mark-label" x="952" y="490">CONTRIBUTED</text>
+  <text class="body" x="952" y="528">Dynamic field</text>
+  <text class="body" x="952" y="553">configuration</text>
+
+  <rect class="mark" x="1210" y="455" width="200" height="125" rx="8"/>
+  <text class="label mark-label" x="1232" y="490">CONTRIBUTED</text>
+  <text class="body" x="1232" y="528">User</text>
+  <text class="body" x="1232" y="553">administration</text>
+
+  <path class="mark-line" d="M215 355V445"/>
+  <path class="mark-line" d="M495 355V445"/>
+  <path class="mark-line" d="M775 355V445"/>
+  <path class="mark-line" d="M1055 355V445"/>
+  <path class="mark-line" d="M1310 355V445"/>
+
+  <text class="label" x="90" y="650">PLATFORM CONTEXT / SYSTEM-WIDE CAPABILITIES</text>
+  <rect class="context" x="90" y="680" width="300" height="105" rx="8"/>
+  <text class="label" x="114" y="719">CONTEXT</text>
+  <text class="body" x="114" y="754">JWT / role-based access</text>
+
+  <rect class="context" x="425" y="680" width="300" height="105" rx="8"/>
+  <text class="label" x="449" y="719">CONTEXT</text>
+  <text class="body" x="449" y="754">Socket.IO real-time channel</text>
+
+  <rect class="context" x="760" y="680" width="300" height="105" rx="8"/>
+  <text class="label" x="784" y="719">CONTEXT</text>
+  <text class="body" x="784" y="754">70+ PostgreSQL migrations</text>
+
+  <rect class="context" x="1095" y="680" width="315" height="105" rx="8"/>
+  <text class="label" x="1119" y="719">CONTEXT</text>
+  <text class="body" x="1119" y="754">aaPanel / Nginx deployment</text>
+
+  <rect x="90" y="835" width="38" height="24" rx="4" fill="#201b16" stroke="#f59e0b" stroke-width="2"/>
+  <text class="small" x="142" y="854">Contributed: responsibilities listed in the internship content</text>
+  <rect x="720" y="835" width="38" height="24" rx="4" fill="#0a1a2f" stroke="#38bdf8" stroke-width="2"/>
+  <text class="small" x="772" y="854">Platform context: surrounding system details</text>
+
+  <path d="M90 900H1410" stroke="#38bdf8" stroke-width="2"/>
+  <text class="small" x="90" y="945">PROJECT / RECOVERLAB CRM</text>
+  <text class="small" x="90" y="980">ROLE / WEB DEVELOPMENT INTERN</text>
+  <text class="small" x="90" y="1015">DATE / MAY–JUNE 2026</text>
+  <text class="label" x="1230" y="1015">SHEET 1 OF 1</text>
+</svg>

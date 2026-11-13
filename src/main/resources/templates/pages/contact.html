@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base(${pageTitle}, ${pageDescription}, ${canonicalUrl}, ${openGraphImageUrl}, 'contact', ~{::content})}">
+<th:block th:fragment="content">
+  <div class="container contact-page">
+    <header class="contact-header">
+      <p class="section-header__eyebrow">Contact / available channels</p>
+      <h1>Let’s connect</h1>
+      <p>Choose a channel to reach me about backend roles, projects, or ideas.</p>
+    </header>
+
+    <ul class="contact-cards" aria-label="Contact options">
+      <li th:if="${profile.email != null}">
+        <a class="contact-card card" th:href="|mailto:${profile.email}|">
+          <span class="contact-card__eyebrow">Email</span>
+          <h2 th:text="${profile.email}">Email address</h2>
+          <span class="contact-card__action">Send an email <span aria-hidden="true">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="contact-card card"
+           th:href="${profile.links.linkedIn}"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-card__eyebrow">Professional network</span>
+          <h2>LinkedIn</h2>
+          <span class="contact-card__action">Visit profile <span aria-hidden="true">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="contact-card card"
+           th:href="${profile.links.github}"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-card__eyebrow">Code and projects</span>
+          <h2>GitHub</h2>
+          <span class="contact-card__action">Visit profile <span aria-hidden="true">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a class="contact-card card" th:href="@{${profile.resumePath}}" download>
+          <span class="contact-card__eyebrow">Resume</span>
+          <h2>Download resume</h2>
+          <span class="contact-card__action">Get the PDF <span aria-hidden="true">↓</span></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</th:block>
+</html>

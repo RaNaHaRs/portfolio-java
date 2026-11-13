@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base(${pageTitle}, ${pageDescription}, ${canonicalUrl}, ${openGraphImageUrl}, 'skills', ~{::content})}">
+<th:block th:fragment="content">
+  <div class="container skills-page">
+    <header class="skills-header">
+      <p class="section-header__eyebrow">Skills and evidence</p>
+      <h1>Skills</h1>
+      <p>Technologies and tools, with links to visible projects where they are used.</p>
+    </header>
+
+    <p class="callout skills-levels-note" th:if="${!levelsConfirmed}">
+      These skill levels are proposed and still need confirmation.
+    </p>
+
+    <section class="skills-category" th:each="group, iterator : ${skillGroups}"
+             th:aria-labelledby="|skills-level-${iterator.index}|">
+      <header class="skills-category__header">
+        <p class="section-header__eyebrow" th:text="|Level ${iterator.count}|">Level 1</p>
+        <h2 th:id="|skills-level-${iterator.index}|" th:text="${group.name}">Level name</h2>
+      </header>
+      <ul class="skills-list">
+        <li class="skills-list__item card" th:each="skill : ${group.skills}">
+          <div class="skills-list__heading">
+            <h3 th:text="${skill.name}">Skill name</h3>
+            <span class="chip" th:text="${skill.category}">Category</span>
+          </div>
+          <div class="skills-list__evidence">
+            <span class="skills-list__label">Used in</span>
+            <ul class="skills-list__projects" th:if="${!skill.projects.isEmpty()}">
+              <li th:each="project : ${skill.projects}">
+                <a th:href="@{/projects/{slug}(slug=${project.slug})}"
+                   th:text="${project.title}">Project</a>
+              </li>
+            </ul>
+            <p class="skills-list__empty" th:if="${skill.projects.isEmpty()}">No published project linked yet.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+</th:block>
+</html>

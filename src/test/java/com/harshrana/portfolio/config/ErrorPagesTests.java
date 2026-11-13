@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
@@ -19,16 +21,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.harshrana.portfolio.PageContractAssertions;
+import com.harshrana.portfolio.content.ProfileContentProperties;
 import com.harshrana.portfolio.web.HtmlErrorPageExceptionHandler;
 
 @WebMvcTest(controllers = ErrorPageProbeController.class)
-@Import({ SecurityConfiguration.class, CspNonceModelAdvice.class, HtmlErrorPageExceptionHandler.class })
+@Import({
+	SecurityConfiguration.class,
+	CspNonceModelAdvice.class,
+	HtmlErrorPageExceptionHandler.class,
+	ErrorPagesTests.ContentConfiguration.class
+})
 class ErrorPagesTests {
 
 	private static final Pattern CSP_NONCE_PATTERN = Pattern.compile("'nonce-([A-Za-z0-9_-]+)'");
 
 	@Autowired
 	private MockMvc mockMvc;
+
+	@TestConfiguration(proxyBeanMethods = false)
+	@EnableConfigurationProperties(ProfileContentProperties.class)
+	static class ContentConfiguration {
+	}
 
 	@Test
 	void rendersStyledNotFoundPageWithNotFoundStatus() throws Exception {
@@ -41,6 +55,7 @@ class ErrorPagesTests {
 		String csp = result.getResponse().getHeader("Content-Security-Policy");
 		Matcher cspNonceMatcher = CSP_NONCE_PATTERN.matcher(csp);
 		assertThat(cspNonceMatcher.find()).isTrue();
+		PageContractAssertions.assertPageContract(html, "http://localhost:8080/missing-page");
 		assertThat(html)
 				.contains("<html lang=\"en\"")
 				.contains("<title>Page not found · Harsh Rana, Java Backend Developer</title>")
@@ -58,7 +73,9 @@ class ErrorPagesTests {
 				.andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
 				.andReturn();
 
-		assertThat(result.getResponse().getContentAsString())
+		String html = result.getResponse().getContentAsString();
+		PageContractAssertions.assertPageContract(html, "http://localhost:8080/test/server-error");
+		assertThat(html)
 				.contains("ServerErrorException.java")
 				.contains("500: something went wrong on the server.")
 				.doesNotContain("sensitive internal details");
@@ -71,7 +88,9 @@ class ErrorPagesTests {
 				.andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
 				.andReturn();
 
-		assertThat(result.getResponse().getContentAsString())
+		String html = result.getResponse().getContentAsString();
+		PageContractAssertions.assertPageContract(html, "http://localhost:8080/test/client-error");
+		assertThat(html)
 				.contains("400: this request could not be completed.")
 				.doesNotContain("sensitive internal details");
 	}

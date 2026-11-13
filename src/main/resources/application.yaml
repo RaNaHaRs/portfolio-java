@@ -4,6 +4,7 @@ spring:
   config:
     import:
       - classpath:content/profile.yml
+      - classpath:content/about.yml
       - classpath:content/home.yml
       - classpath:content/projects.yml
       - classpath:content/experience.yml

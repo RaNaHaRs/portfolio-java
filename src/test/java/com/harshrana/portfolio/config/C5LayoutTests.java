@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.harshrana.portfolio.content.ProfileContentProperties;
+
 @WebMvcTest(controllers = C5LayoutProbeController.class)
-@Import({ SecurityConfiguration.class, CspNonceModelAdvice.class })
+@Import({ SecurityConfiguration.class, CspNonceModelAdvice.class, C5LayoutTests.ContentConfiguration.class })
 class C5LayoutTests {
 
 	private static final Pattern CSP_NONCE_PATTERN = Pattern.compile("'nonce-([A-Za-z0-9_-]+)'");
@@ -69,6 +73,11 @@ class C5LayoutTests {
 				.contains("field-error")
 				.contains("aria-live=\"polite\"");
 		assertThat(VERSIONED_BASE_CSS_PATTERN.matcher(html).find()).isTrue();
+	}
+
+	@TestConfiguration(proxyBeanMethods = false)
+	@EnableConfigurationProperties(ProfileContentProperties.class)
+	static class ContentConfiguration {
 	}
 
 }

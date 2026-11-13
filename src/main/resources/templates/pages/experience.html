@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base(${pageTitle}, ${pageDescription}, ${canonicalUrl}, ${openGraphImageUrl}, 'experience', ~{::content})}">
+<th:block th:fragment="content">
+  <div class="container experience-page">
+    <header class="experience-header">
+      <p class="section-header__eyebrow">Professional experience</p>
+      <h1>Experience</h1>
+      <p>Internship work and the technical context around the RecoverLab CRM contribution.</p>
+    </header>
+
+    <section class="experience-positions" aria-label="Internship experience">
+      <article class="experience-card card" th:each="position : ${positions}">
+        <div class="experience-card__header">
+          <div>
+            <p class="experience-card__eyebrow" th:text="${position.organization}">Organization</p>
+            <h2 th:text="${position.role}">Role</h2>
+          </div>
+          <p class="experience-card__date" th:text="|${position.start} – ${position.end}|">May 2026 – June 2026</p>
+        </div>
+        <p class="experience-card__location" th:text="${position.location}">Location</p>
+        <p class="experience-card__summary" th:text="${position.summary}">Position summary</p>
+
+        <h3>Technology stack</h3>
+        <ul class="experience-card__stack">
+          <li class="chip" th:each="technology : ${position.stack}" th:text="${technology}">Technology</li>
+        </ul>
+
+        <h3>Responsibilities</h3>
+        <ul class="experience-card__responsibilities">
+          <li th:each="responsibility : ${position.responsibilities}" th:text="${responsibility}">Responsibility</li>
+        </ul>
+
+        <div class="experience-card__recognitions"
+             th:if="${position.recognitions != null and !position.recognitions.isEmpty()}">
+          <h3>Recognition</h3>
+          <ul>
+            <li th:each="recognition : ${position.recognitions}">
+              <span th:text="${recognition.title}">Recognition</span>
+              <span class="chip" th:if="${recognition.approvedForPublicDisplay}">Approved</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="experience-blueprint section" aria-labelledby="experience-blueprint-title">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Architecture and contribution</p>
+        <h2 id="experience-blueprint-title">RecoverLab CRM blueprint</h2>
+        <p>The diagram separates responsibilities listed in the experience content from the surrounding platform context.</p>
+      </div>
+      <figure class="blueprint-frame">
+        <picture>
+          <source media="(max-width: 600px)" th:srcset="@{/svg/recoverlab-blueprint-mobile.svg}">
+          <img th:src="@{/svg/recoverlab-blueprint.svg}"
+               alt="RecoverLab CRM architecture. Amber callouts mark contributed UI modules, REST API integration, inventory and case management, dynamic field configuration, and user administration. Blue callouts show platform context.">
+        </picture>
+        <figcaption>RecoverLab CRM · Web Development Intern · May–June 2026</figcaption>
+      </figure>
+    </section>
+  </div>
+</th:block>
+</html>

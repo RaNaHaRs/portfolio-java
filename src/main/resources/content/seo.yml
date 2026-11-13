@@ -4,28 +4,35 @@ portfolio:
       defaults:
         title: Harsh Rana, Java Backend Developer
         description: Portfolio of Harsh Rana, a Java Backend Developer.
+        openGraphImage: "${portfolio.site.base-url}/img/og-default.svg"
       pages:
         - route: /
           metadata:
             title: Home
             description: Harsh Rana is a Java Backend Developer based in Anand, Gujarat, India.
+            openGraphImage: "${portfolio.site.base-url}/img/og-default.svg"
         - route: /about
           metadata:
             title: About
             description: Education, activities, and background of Harsh Rana.
+            openGraphImage: "${portfolio.site.base-url}/img/og-default.svg"
         - route: /skills
           metadata:
             title: Skills
             description: Programming languages, backend technologies, frontend technologies, databases, and tools.
+            openGraphImage: "${portfolio.site.base-url}/img/og-default.svg"
         - route: /experience
           metadata:
             title: Experience
             description: Web Development Internship at Selkey Cybersecurity Pvt. Ltd.
+            openGraphImage: "${portfolio.site.base-url}/img/og-default.svg"
         - route: /projects
           metadata:
             title: Projects
-            description: Rentify, RecoverLab CRM internship contribution, and MovieSearch Recommendation Engine.
+            description: Selected software projects by Harsh Rana, including a full-stack marketplace and production CRM contribution.
+            openGraphImage: "${portfolio.site.base-url}/img/og-default.svg"
         - route: /contact
           metadata:
             title: Contact
             description: Contact Harsh Rana, Java Backend Developer.
+            openGraphImage: "${portfolio.site.base-url}/img/og-default.svg"

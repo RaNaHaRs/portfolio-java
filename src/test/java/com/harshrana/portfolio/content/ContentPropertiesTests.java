@@ -43,6 +43,8 @@ class ContentPropertiesTests {
 
 		ProfileContentProperties profile = binder.bind("portfolio.content.profile",
 				Bindable.of(ProfileContentProperties.class), validation).get();
+		AboutContentProperties about = binder.bind("portfolio.content.about",
+				Bindable.of(AboutContentProperties.class), validation).get();
 		HomeContentProperties home = binder.bind("portfolio.content.home",
 				Bindable.of(HomeContentProperties.class), validation).get();
 		ProjectsContentProperties projects = binder.bind("portfolio.content.projects",
@@ -62,8 +64,10 @@ class ContentPropertiesTests {
 		assertThat(profile.email()).isNull();
 		assertThat(profile.flags().showCgpa()).isFalse();
 		assertThat(profile.flags().contact().form().enabled()).isTrue();
+		assertThat(about.story()).hasSize(3);
 		assertThat(home.proofItems()).hasSize(4);
 		assertThat(home.journeyStops()).hasSize(5);
+		assertThat(projects.showInProgress()).isFalse();
 		assertThat(projects.items()).hasSize(3);
 		assertThat(projects.items()).allSatisfy(project -> assertThat(
 				new java.io.File("src/main/resources/content").toPath().resolve(project.caseStudy()).toFile())
@@ -72,6 +76,9 @@ class ContentPropertiesTests {
 		assertThat(experience.positions()).hasSize(1);
 		assertThat(skills.levelsConfirmed()).isFalse();
 		assertThat(timeline.events()).isNotEmpty();
+		assertThat(timeline.events()).filteredOn(TimelineContentProperties.Event::approvedForDisplay)
+				.extracting(TimelineContentProperties.Event::title)
+				.doesNotContain("MovieSearch Recommendation Engine", "Hyperlink InfoSystem");
 		assertThat(certifications.items()).allSatisfy(certification ->
 				assertThat(certification.isPublic()).isFalse());
 		assertThat(seo.pages()).hasSize(6);
@@ -93,10 +100,13 @@ class ContentPropertiesTests {
 	private static StandardEnvironment contentEnvironment() throws IOException {
 		StandardEnvironment environment = new StandardEnvironment();
 		environment.getPropertySources().addFirst(new MapPropertySource("test-environment",
-				Map.of("CONTACT_FORM_ENABLED", "true")));
+				Map.of(
+						"CONTACT_FORM_ENABLED", "true",
+						"portfolio.site.base-url", "http://localhost:8080")));
 
 		List<String> files = List.of(
 				"profile.yml",
+				"about.yml",
 				"home.yml",
 				"projects.yml",
 				"experience.yml",

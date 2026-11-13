@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Harsh Rana - Java Backend Developer</title>
+  <desc id="description">Portfolio of Harsh Rana, a Java Backend Developer.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0d10"/>
+      <stop offset="1" stop-color="#181c22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <rect x="80" y="106" width="8" height="418" rx="4" fill="url(#accent)"/>
+  <circle cx="1050" cy="170" r="220" fill="#22d3ee" opacity=".06"/>
+  <circle cx="1095" cy="505" r="175" fill="#f59e0b" opacity=".05"/>
+  <text x="132" y="278" fill="#e6e8eb" font-family="Arial, sans-serif" font-size="78" font-weight="700">Harsh Rana</text>
+  <text x="136" y="356" fill="#22d3ee" font-family="Arial, sans-serif" font-size="36" font-weight="600">Java Backend Developer</text>
+  <text x="136" y="432" fill="#9aa3af" font-family="Arial, sans-serif" font-size="25">Building real-world software with Java and Spring Boot</text>
+  <text x="136" y="500" fill="#f59e0b" font-family="Arial, sans-serif" font-size="20">ANAND, GUJARAT, INDIA</text>
+</svg>

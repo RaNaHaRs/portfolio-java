@@ -7,6 +7,26 @@
   <meta name="color-scheme" content="dark light">
   <title th:text="|${pageTitle} · Harsh Rana, Java Backend Developer|">Error · Harsh Rana, Java Backend Developer</title>
   <meta name="description" th:content="${pageDescription}">
+  <link rel="canonical" th:href="${canonicalUrl}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" th:content="|${pageTitle} · Harsh Rana, Java Backend Developer|">
+  <meta property="og:description" th:content="${pageDescription}">
+  <meta property="og:url" th:content="${canonicalUrl}">
+  <meta property="og:image" th:content="${openGraphImageUrl}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" th:content="|${pageTitle} · Harsh Rana, Java Backend Developer|">
+  <meta name="twitter:description" th:content="${pageDescription}">
+  <meta name="twitter:image" th:content="${openGraphImageUrl}">
+  <script type="application/ld+json" th:nonce="${cspNonce}" th:inline="javascript">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": [[${personJsonLd.name}]],
+      "jobTitle": [[${personJsonLd.role}]],
+      "url": [[${personJsonLd.url}]],
+      "sameAs": [[${personJsonLd.sameAs}]]
+    }
+  </script>
   <link rel="stylesheet" th:href="@{/css/base.css}">
   <script th:nonce="${cspNonce}">
     (() => {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base(${pageTitle}, ${pageDescription}, ${canonicalUrl}, ${openGraphImageUrl}, 'projects', ~{::content})}">
+<th:block th:fragment="content">
+  <section class="container projects-page">
+    <header class="section-header">
+      <p class="section-header__eyebrow">Selected work</p>
+      <h1>Projects built to solve real problems</h1>
+      <p>Explore the applications I’ve built and contributed to, and the decisions behind them.</p>
+    </header>
+
+    <div class="projects-list">
+      <article class="project-card card" th:each="projectPage : ${projects}">
+        <div class="project-card__content">
+          <p class="project-card__category" th:text="${projectPage.project.category}">Project category</p>
+          <h2 class="project-card__title">
+            <a th:href="@{/projects/{slug}(slug=${projectPage.project.slug})}"
+               th:text="${projectPage.project.title}">Project title</a>
+          </h2>
+          <p class="project-card__summary" th:text="${projectPage.project.summary}">Project summary</p>
+          <p class="project-card__type-note"
+             th:if="${projectPage.project.typeNote != null}"
+             th:text="${projectPage.project.typeNote}">Project contribution note</p>
+          <ul class="project-card__highlights"
+              th:if="${projectPage.project.highlights != null and !projectPage.project.highlights.isEmpty()}">
+            <li th:each="highlight, iterator : ${projectPage.project.highlights}"
+                th:if="${iterator.index < 3}"
+                th:text="${highlight}">Project highlight</li>
+          </ul>
+          <ul class="project-card__stack" aria-label="Technology stack">
+            <li class="chip" th:each="technology, iterator : ${projectPage.project.stack}"
+                th:if="${iterator.index < 5}"
+                th:text="${technology}">Technology</li>
+          </ul>
+          <nav class="project-card__actions" th:aria-label="|Links for ${projectPage.project.title}|">
+            <a class="button button--primary"
+               th:href="@{/projects/{slug}(slug=${projectPage.project.slug})}">Case study</a>
+            <a class="button button--secondary"
+               th:if="${projectPage.project.links.live != null}"
+               th:href="${projectPage.project.links.live}"
+               target="_blank"
+               rel="noopener noreferrer">Live demo</a>
+            <a class="button button--ghost"
+               th:if="${projectPage.project.links.repository != null}"
+               th:href="${projectPage.project.links.repository}"
+               target="_blank"
+               rel="noopener noreferrer">GitHub</a>
+          </nav>
+        </div>
+      </article>
+    </div>
+  </section>
+</th:block>
+</html>

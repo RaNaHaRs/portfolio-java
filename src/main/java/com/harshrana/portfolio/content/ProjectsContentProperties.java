@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 
 @Validated
 @ConfigurationProperties("portfolio.content.projects")
-public record ProjectsContentProperties(@NotEmpty List<@Valid Project> items) {
+public record ProjectsContentProperties(boolean showInProgress, @NotEmpty List<@Valid Project> items) {
 
 	public record Project(
 			@NotBlank String slug,

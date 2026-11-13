@@ -1,6 +1,7 @@
 portfolio:
   content:
     projects:
+      show-in-progress: false
       items:
         - slug: rentify
           order: 1

@@ -36,7 +36,7 @@ portfolio:
           targetRoute: /experience
           statusChip: Internship
         - label: Projects
-          teaser: Rentify, RecoverLab CRM, and MovieSearch.
+          teaser: Read the Rentify and RecoverLab CRM case studies.
           targetRoute: /projects
           statusChip: Projects
         - label: Contact

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base(${pageTitle}, ${pageDescription}, ${canonicalUrl}, ${openGraphImageUrl}, 'about', ~{::content})}">
+<th:block th:fragment="content">
+  <div class="container about-page">
+    <header class="about-header">
+      <p class="section-header__eyebrow">The person behind the work</p>
+      <h1>About Harsh Rana</h1>
+      <div class="about-story">
+        <p th:each="paragraph : ${story}" th:text="${paragraph}">A short story about the path into software.</p>
+      </div>
+    </header>
+
+    <section class="about-section" aria-labelledby="about-timeline-title">
+      <div class="section-header">
+        <p class="section-header__eyebrow">From first steps to what’s next</p>
+        <h2 id="about-timeline-title">Timeline</h2>
+      </div>
+      <ol class="about-timeline">
+        <li class="about-timeline__event" th:each="event : ${timeline}">
+          <div class="about-timeline__year">
+            <span th:if="${event.period != null}" th:text="${event.period}">May–June</span>
+            <span th:text="${event.year}">2026</span>
+            <span class="chip" th:if="${event.upcoming}">Upcoming</span>
+          </div>
+          <div class="about-timeline__content">
+            <h3 th:text="${event.title}">Timeline event</h3>
+            <p th:text="${event.description}">Timeline event details</p>
+            <ul class="about-timeline__tags" th:if="${event.tags != null and !event.tags.isEmpty()}">
+              <li class="chip" th:each="tag : ${event.tags}" th:text="${tag}">Tag</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="about-section about-facts" aria-labelledby="about-education-title">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Education and direction</p>
+        <h2 id="about-education-title">Education</h2>
+      </div>
+      <div class="about-facts__card card">
+        <dl class="about-facts__list">
+          <div>
+            <dt>Degree</dt>
+            <dd th:text="|${education.degree} in ${education.field}|">B.Tech in Information Technology</dd>
+          </div>
+          <div>
+            <dt>Institute</dt>
+            <dd th:text="|${education.institution}, ${education.university}|">A.D. Patel Institute of Technology, CVM University</dd>
+          </div>
+          <div>
+            <dt>Graduation</dt>
+            <dd th:text="|Expected ${education.graduation.expectedYear}|">Expected 2027</dd>
+          </div>
+          <div>
+            <dt>Location</dt>
+            <dd th:text="${location}">Anand, Gujarat, India</dd>
+          </div>
+          <div th:if="${showCgpa and education.cgpa != null}">
+            <dt>CGPA</dt>
+            <dd th:text="${education.cgpa}">0.00</dd>
+          </div>
+          <div>
+            <dt>Career goal</dt>
+            <dd th:text="${careerGoal}">Career goal</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="about-section" aria-labelledby="about-certifications-title">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Learning and participation</p>
+        <h2 id="about-certifications-title">Certifications and activities</h2>
+        <p>Hackathon and volunteer activities are included in the timeline.</p>
+      </div>
+      <ul class="about-certifications">
+        <li class="about-certifications__item card" th:each="certification : ${certifications}">
+          <div>
+            <h3 th:text="${certification.title}">Certification</h3>
+            <p th:text="${certification.issuer}">Issuer</p>
+            <p class="about-certifications__year" th:if="${certification.year != null}"
+               th:text="${certification.year}">2024</p>
+          </div>
+          <a class="button button--secondary"
+             th:if="${certification.isPublic and certification.file != null}"
+             th:href="@{${certification.file}}">View certificate</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="about-motto" aria-label="Motto">
+      <p class="section-header__eyebrow">A guiding thought</p>
+      <blockquote th:text="${motto}">Curiosity started my coding journey. Building real-world software keeps it moving forward.</blockquote>
+    </section>
+  </div>
+</th:block>
+</html>

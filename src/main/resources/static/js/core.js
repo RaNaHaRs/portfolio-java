@@ -198,7 +198,111 @@ function initializeCodeCopy() {
   });
 }
 
+function initializeSyntaxHighlighting() {
+  const highlightCode = () => {
+    if (!window.hljs) {
+      return;
+    }
+
+    document.querySelectorAll("pre code[class*='language-']").forEach((code) => {
+      window.hljs.highlightElement(code);
+    });
+  };
+
+  if (document.readyState === "complete") {
+    highlightCode();
+  } else {
+    window.addEventListener("load", highlightCode, { once: true });
+  }
+}
+
+function initializeStatusStrip() {
+  const strip = document.querySelector("[data-status-strip]");
+  if (!strip) {
+    return;
+  }
+
+  const unavailable = strip.querySelector("[data-status-unavailable]");
+  const metrics = strip.querySelector("[data-status-metrics]");
+  const commitLink = strip.querySelector("[data-status-commit-link]");
+  const commitUnavailable = strip.querySelector("[data-status-commit-unavailable]");
+
+  const setText = (selector, value) => {
+    const element = strip.querySelector(selector);
+    if (!element) {
+      throw new Error(`The status strip is missing ${selector}.`);
+    }
+    element.textContent = value;
+  };
+
+  const formatUptime = (seconds) => {
+    const days = Math.floor(seconds / 86400);
+    const hours = Math.floor((seconds % 86400) / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return days > 0
+      ? `${days}d ${hours}h ${minutes}m`
+      : `${hours}h ${minutes}m ${remainingSeconds}s`;
+  };
+
+  const refresh = async () => {
+    try {
+      const response = await fetch("/api/v1/status", {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      if (!response.ok) {
+        throw new Error(`Status request failed with HTTP ${response.status}.`);
+      }
+
+      const status = await response.json();
+      if (!Number.isFinite(status.uptimeSeconds)
+          || status.uptimeSeconds < 0
+          || !Number.isFinite(status.requestsServed)
+          || status.requestsServed < 0
+          || !Number.isFinite(status.jvm?.usedMb)
+          || status.jvm.usedMb < 0
+          || !Number.isFinite(status.jvm?.maxMb)
+          || status.jvm.maxMb < 0
+          || typeof status.build?.version !== "string"
+          || typeof status.build?.time !== "string"
+          || !Number.isFinite(Date.parse(status.build.time))) {
+        throw new TypeError("The status response is missing required values.");
+      }
+
+      setText("[data-status-uptime]", formatUptime(status.uptimeSeconds));
+      setText("[data-status-requests]", status.requestsServed.toLocaleString());
+      setText("[data-status-memory]", `${status.jvm.usedMb} / ${status.jvm.maxMb} MB`);
+      setText("[data-status-build]", status.build.version);
+      setText("[data-status-build-time]", new Date(status.build.time).toLocaleString());
+
+      const commit = status.build.commit;
+      if (typeof commit === "string" && /^[a-f0-9]{7,40}$/i.test(commit)) {
+        commitLink.href = `https://github.com/RaNaHaRs/portfolio-java/commit/${commit}`;
+        commitLink.textContent = commit.slice(0, 7);
+        commitLink.hidden = false;
+        commitUnavailable.hidden = true;
+      } else {
+        commitLink.hidden = true;
+        commitUnavailable.hidden = false;
+      }
+
+      metrics.hidden = false;
+      unavailable.hidden = true;
+    } catch (error) {
+      metrics.hidden = true;
+      unavailable.hidden = false;
+      console.warn("Live status is unavailable.", error);
+    }
+  };
+
+  void refresh();
+  window.setInterval(refresh, 15000);
+}
+
 initializeTheme();
 initializeMotionToggle();
 initializeNavigation();
 initializeCodeCopy();
+initializeSyntaxHighlighting();
+initializeStatusStrip();
